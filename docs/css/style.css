@@ -1,0 +1,554 @@
+/* Ceefax/Teletext style for IVCC */
+@font-face {
+    font-family: 'Teletext';
+    src: local('Courier New'), local('Monaco'), local('Consolas');
+}
+
+:root {
+    --bg: #000000;
+    --red: #ff0000;
+    --green: #00ff00;
+    --yellow: #ffff00;
+    --blue: #0000ff;
+    --cyan: #00ffff;
+    --magenta: #ff00ff;
+    --white: #ffffff;
+    --ivcc-darkblue: #224181;
+    --ivcc-red: #bb2f40;
+    --ivcc-yellow: #ffcb49;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #000000;
+    color: #00ff00;
+    font-family: 'Courier New', 'Lucida Console', Monaco, monospace;
+    font-size: 16px;
+    line-height: 1.2;
+    margin: 0;
+    padding: 10px;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: #ffff00;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00ffff;
+    text-decoration: underline;
+}
+
+.header {
+    border: 2px solid #ff0000;
+    background-color: #000033;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header h1 {
+    color: #ffcb49;
+    font-size: 28px;
+    margin: 5px 0;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px #ff0000;
+    word-break: break-word;
+}
+
+.nav {
+    border: 1px solid #00ffff;
+    background-color: #001100;
+    padding: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+}
+
+.nav a {
+    color: #00ffff;
+    margin: 0;
+    padding: 2px 8px;
+    display: inline-block;
+}
+
+.nav a:hover,
+.nav a.active {
+    background-color: #ffff00;
+    color: #000000;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.page-title {
+    color: #ff00ff;
+    font-size: 24px;
+    border-bottom: 2px solid #ff00ff;
+    padding-bottom: 5px;
+    margin: 20px 0 15px 0;
+}
+
+.year-section {
+    margin-bottom: 30px;
+    border: 1px solid #333333;
+    background-color: #000000;
+}
+
+.year-header {
+    background-color: #224181;
+    color: #ffcb49;
+    padding: 6px 12px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #ff0000;
+}
+
+.match-row {
+    display: grid;
+    grid-template-columns: 120px 200px 150px 200px auto;
+    gap: 8px;
+    padding: 6px 12px;
+    border-bottom: 1px dotted #003300;
+    align-items: center;
+}
+
+.match-row:hover {
+    background-color: #001a00;
+}
+
+.match-row.header-row {
+    background-color: #000033;
+    color: #00ffff;
+    font-weight: bold;
+    border-bottom: 2px solid #00ffff;
+}
+
+.year-section {
+    overflow-x: auto;
+}
+
+.match-link {
+    color: #ffff00;
+}
+
+.match-link:hover {
+    color: #00ffff;
+}
+
+.result-won {
+    color: #00ff00;
+}
+
+.result-lost {
+    color: #ff0000;
+}
+
+.result-drawn {
+    color: #ffff00;
+}
+
+.result-cancelled {
+    color: #888888;
+}
+
+.awards-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    min-width: 600px;
+}
+
+.awards-table th:nth-child(1) {
+    width: 28%;
+}
+
+.awards-table th:nth-child(2) {
+    width: 22%;
+}
+
+.awards-table th:nth-child(3) {
+    width: 50%;
+}
+
+.awards-table thead {
+    background-color: #000033;
+}
+
+.awards-table th {
+    color: #00ffff;
+    padding: 6px 12px;
+    text-align: left;
+    border: 1px solid #003366;
+    font-weight: bold;
+}
+
+.awards-table td {
+    padding: 6px 12px;
+    border: 1px solid #002200;
+    vertical-align: top;
+}
+
+.awards-table tbody tr:nth-child(even) {
+    background-color: #000a00;
+}
+
+.awards-table tbody tr:hover {
+    background-color: #001a00;
+}
+
+.awards-table .award-name {
+    color: #ffff00;
+}
+
+.awards-table .award-winner {
+    color: #00ffff;
+}
+
+.awards-table .award-comments {
+    color: #00ff00;
+}
+
+.stats-header {
+    color: #ffcb49;
+    background-color: #224181;
+    padding: 8px 12px;
+    font-size: 18px;
+    border: 2px solid #ff0000;
+    margin: 25px 0 10px 0;
+}
+
+.stats-table-wrapper,
+.awards-table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    border: 1px solid #333333;
+    min-width: 600px;
+}
+
+.stats-table thead {
+    background-color: #000033;
+}
+
+.stats-table th {
+    color: #00ffff;
+    padding: 6px 8px;
+    text-align: left;
+    border: 1px solid #003366;
+    font-weight: bold;
+}
+
+.stats-table td {
+    padding: 4px 8px;
+    border: 1px solid #002200;
+    color: #00ff00;
+}
+
+.stats-table tbody tr:nth-child(even) {
+    background-color: #000a00;
+}
+
+.stats-table tbody tr:hover {
+    background-color: #001a00;
+}
+
+.stats-table .numeric {
+    text-align: right;
+}
+
+.stats-table .name-col {
+    color: #ffff00;
+}
+
+.match-detail-header {
+    background-color: #224181;
+    color: #ffcb49;
+    padding: 10px 15px;
+    border: 2px solid #ff0000;
+    margin-bottom: 15px;
+}
+
+.match-detail-header h2 {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    word-break: break-word;
+}
+
+.match-info {
+    color: #00ffff;
+    display: flex;
+    gap: 10px 20px;
+    flex-wrap: wrap;
+}
+
+.scorecard-section {
+    margin: 20px 0;
+    border: 1px solid #333333;
+    overflow-x: auto;
+}
+
+.scorecard-table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.scorecard-header {
+    background-color: #000033;
+    color: #ff00ff;
+    padding: 6px 12px;
+    font-size: 16px;
+    border-bottom: 2px solid #ff00ff;
+}
+
+.scorecard-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+.scorecard-table thead {
+    background-color: #001100;
+}
+
+.scorecard-table th {
+    color: #00ffff;
+    padding: 5px 8px;
+    text-align: left;
+    border: 1px solid #003300;
+}
+
+.scorecard-table td {
+    padding: 4px 8px;
+    border: 1px solid #001a00;
+    color: #00ff00;
+}
+
+.scorecard-table .numeric {
+    text-align: center;
+}
+
+.scorecard-table .runs {
+    text-align: right;
+    color: #ffff00;
+}
+
+.scorecard-table .batsman-name {
+    color: #ffff00;
+}
+
+.scorecard-table .batsman-name,
+.fielding-table .name-col {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.scorecard-table .dismissal {
+    color: #cccccc;
+    font-style: italic;
+}
+
+.scorecard-total {
+    background-color: #001100;
+    border-top: 1px solid #00ff00;
+    color: #ffff00;
+    padding: 7px 12px;
+    text-align: right;
+}
+
+.scorecard-total-label {
+    color: #00ffff;
+}
+
+.scorecard-total strong {
+    color: #ffff00;
+}
+
+.match-report {
+    background-color: #000a00;
+    border: 1px solid #00ff00;
+    padding: 15px;
+    margin: 20px 0;
+    color: #00ff00;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.match-report h3 {
+    color: #ff00ff;
+    margin-top: 0;
+}
+
+.match-report-image {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.match-report-image img {
+    display: block;
+    max-width: 100%;
+    max-height: 700px;
+    margin: 0 auto;
+    border: 1px solid #00ff00;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 4px 10px;
+    background-color: #000033;
+    border: 1px solid #00ffff;
+}
+
+.team-stats {
+    background-color: #224181;
+    color: #ffcb49;
+    padding: 6px 12px;
+    font-size: 20px;
+    font-weight: bold;
+    border-bottom: 2px solid #ff0000;
+    border-top: 2px solid #ff0000;
+    margin: 15px 0;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 15px;
+    border-top: 2px solid #ff0000;
+    color: #888888;
+    font-size: 12px;
+}
+
+.logo {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 1100px) {
+    .match-row {
+        grid-template-columns: 90px 150px 100px 150px auto;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 700px) {
+    body {
+        font-size: 14px;
+        padding: 6px;
+    }
+    .header {
+        gap: 8px;
+    }
+    .header h1 {
+        font-size: 20px;
+        letter-spacing: 0.5px;
+        min-width: 0;
+    }
+    .nav {
+        gap: 6px 12px;
+    }
+    .nav a {
+        margin: 0 6px;
+        padding: 2px 4px;
+    }
+    .match-row {
+        display: block;
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+    .match-row.header-row {
+        display: none;
+    }
+    .match-row > div {
+        display: inline;
+        min-width: 0;
+        white-space: normal;
+    }
+    .match-row > div:nth-child(1)::after {
+        content: " vs";
+        color: #00ffff;
+        margin-right: 4px;
+    }
+    .match-row:not(:has(div:nth-child(3)[style*="display:none"])) > div:nth-child(2)::after {
+        content: " (";
+        color: #00ffff;
+        margin-left: 0;
+    }
+    .match-row:not(:has(div:nth-child(3)[style*="display:none"])) > div:nth-child(3) {
+        display: inline;
+    }
+    .match-row:not(:has(div:nth-child(3)[style*="display:none"])) > div:nth-child(3)::after {
+        content: ")";
+        color: #00ffff;
+    }
+    .match-row > div:nth-child(3)[style*="display:none"] {
+        display: none;
+    }
+    .match-row > div:nth-child(4) {
+        display: inline;
+    }
+    .match-row > div:nth-child(4)::before {
+        content: " ";
+    }
+    .match-row > div:nth-child(5) {
+        display: inline;
+    }
+    .match-row > div:nth-child(5)::before {
+        content: " ";
+    }
+    .match-row > div:nth-child(5) .match-link {
+        color: #ffff00;
+    }
+    .stats-header {
+        font-size: 16px;
+    }
+    .page-title {
+        font-size: 20px;
+    }
+    .year-header,
+    .team-stats {
+        font-size: 16px;
+    }
+    .awards-table,
+    .stats-table,
+    .scorecard-table {
+        font-size: 13px;
+    }
+    .scorecard-table,
+    .stats-table.fielding-table {
+        min-width: 0;
+    }
+    .scorecard-table th,
+    .scorecard-table td {
+        padding: 4px 5px;
+    }
+}
